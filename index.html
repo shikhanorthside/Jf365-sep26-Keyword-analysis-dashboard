@@ -1,0 +1,400 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jackfruit365 · Keyword Intelligence · September 2026 · NorthSide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1B2A;--teal:#00C7B1;--teal2:#00A88A;--fg:#1A2B3C;--fg2:#4A5E6D;--fg3:#7A8A99;--bg:#F5F7FA;--card:#FFFFFF;--border:#E4EAF0;--red:#E8505B;--amber:#F0A500;--green:#27AE60;--blue:#2980B9}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);font-size:13px;line-height:1.5}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;width:260px;height:100vh;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;z-index:200;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+.sb-brand{padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-brand img{max-width:140px;height:auto;display:block;filter:brightness(0) invert(1) opacity(.9)}
+.sb-client{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-client-label{font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.3);margin-bottom:4px}
+.sb-client-name{font-size:13px;font-weight:600;color:#fff}
+.sb-client-meta{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px}
+.sb-section{padding:14px 20px 4px;font-size:9px;text-transform:uppercase;letter-spacing:1.4px;color:rgba(255,255,255,.25);font-weight:600}
+.sb-nav{list-style:none;padding:0 8px;margin-bottom:4px}
+.sb-nav li a{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:6px;color:rgba(255,255,255,.45);text-decoration:none;font-size:12px;font-weight:400;transition:all .15s}
+.sb-nav li a:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.06)}
+.sb-nav li a.active{color:#fff;background:rgba(0,199,177,.12);border-left:2px solid var(--teal);padding-left:10px}
+.sb-nav li a .ico{width:14px;text-align:center;font-size:11px;opacity:.6;flex-shrink:0}
+.sb-footer{margin-top:auto;padding:12px 20px 20px;font-size:9px;color:rgba(255,255,255,.18);text-transform:uppercase;letter-spacing:.8px}
+
+/* TOP BAR */
+.topbar{position:fixed;top:0;left:260px;right:0;height:48px;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:100;border-bottom:1px solid rgba(255,255,255,.06)}
+.topbar-left{font-size:11px;color:rgba(255,255,255,.5)}
+.topbar-left strong{color:#fff;font-weight:600}
+.topbar-right{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.9px}
+
+/* MAIN */
+.main{margin-left:260px;padding-top:48px;min-height:100vh}
+.section{padding:36px 40px;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+
+/* SECTION HEADERS */
+.s-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.1px;color:var(--teal2);font-weight:700;margin-bottom:6px}
+.s-eyebrow.red{color:var(--red)}
+.s-eyebrow.amber{color:var(--amber)}
+.s-title{font-size:22px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:-.4px;font-family:'Poppins',sans-serif}
+.s-sub{font-size:12px;color:var(--fg3);margin-bottom:24px}
+
+/* KPI CARDS */
+.kpi-row{display:grid;gap:16px;margin-bottom:20px}
+.kpi-4{grid-template-columns:repeat(4,1fr)}
+.kpi-3{grid-template-columns:repeat(3,1fr)}
+.kpi-2{grid-template-columns:1fr 1fr}
+.kcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;position:relative;overflow:hidden}
+.kcard::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--teal)}
+.kcard.red::before{background:var(--red)}
+.kcard.amber::before{background:var(--amber)}
+.kcard.green::before{background:var(--green)}
+.kcard.navy::before{background:var(--navy)}
+.kcard-label{font-size:9.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--fg3);margin-bottom:6px;font-weight:600}
+.kcard-val{font-size:28px;font-weight:700;color:var(--navy);letter-spacing:-1.2px;line-height:1;font-family:'Poppins',sans-serif}
+.kcard-val.teal{color:var(--teal2)}
+.kcard-val.red{color:var(--red)}
+.kcard-val.amber{color:var(--amber)}
+.kcard-val.green{color:var(--green)}
+.kcard-sub{font-size:11px;color:var(--fg3);margin-top:5px}
+.kcard-change{font-size:10px;font-weight:700;margin-top:4px}
+.kcard-change.pos{color:var(--green)}
+.kcard-change.neg{color:var(--red)}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{background:var(--navy)}
+thead th{padding:10px 14px;color:rgba(255,255,255,.8);font-size:9.5px;text-transform:uppercase;letter-spacing:.7px;font-weight:600;text-align:left;white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:#F7FAFD}
+tbody td{padding:8px 14px;color:var(--fg)}
+.tag{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px}
+.tag-hero{background:#FFF3CD;color:#856404}
+.tag-scale{background:#D1FAE5;color:#065F46}
+.tag-pause{background:#FEE2E2;color:#991B1B}
+.tag-fix{background:#FEF3C7;color:#92400E}
+.tag-opt{background:#DBEAFE;color:#1E40AF}
+.tag-new{background:#F3E8FF;color:#6B21A8}
+
+/* INSIGHT CARDS */
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.insight{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:8px;padding:16px 18px}
+.insight.red{border-left-color:var(--red);background:#FFF8F8}
+.insight.amber{border-left-color:var(--amber);background:#FFFBF0}
+.insight.green{border-left-color:var(--green);background:#F5FFF8}
+.insight.navy{border-left-color:var(--navy)}
+.insight-label{font-size:9.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--fg3);margin-bottom:5px;font-weight:700}
+.insight-body{font-size:12.5px;color:var(--fg);line-height:1.65}
+.insight-body strong{color:var(--navy)}
+.insight-body .hi{color:var(--teal2);font-weight:700}
+.insight-body .lo{color:var(--red);font-weight:700}
+
+/* THEME CARDS */
+.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.theme-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;position:relative}
+.theme-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.theme-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;font-family:'Poppins',sans-serif}
+.theme-desc{font-size:11px;color:var(--fg3);margin-bottom:12px;line-height:1.5}
+.theme-metrics{display:flex;flex-direction:column;gap:5px}
+.theme-metric{display:flex;justify-content:space-between;align-items:center;font-size:11px}
+.theme-metric-label{color:var(--fg3)}
+.theme-metric-val{font-weight:700;color:var(--navy)}
+.theme-bar{height:4px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
+.theme-bar-fill{height:100%;border-radius:2px;background:var(--teal)}
+
+/* PRIORITY MATRIX */
+.matrix-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--border);align-items:center}
+.matrix-row:last-child{border-bottom:none}
+.matrix-cell{padding:8px 14px;font-size:12px}
+.matrix-hdr{padding:9px 14px;background:var(--navy);font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.8);font-weight:600}
+.matrix-row.scale{background:#F0FFF8}
+.matrix-row.pause{background:#FFF5F5}
+.matrix-row.fix{background:#FFFBF0}
+.matrix-row.new{background:#F5F3FF}
+
+/* SVG CHARTS */
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:16px}
+.chart-title{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:16px}
+.chart-legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.chart-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--fg3)}
+.chart-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* FUNNEL */
+.funnel-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.funnel-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.funnel-card-hdr{font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-bottom:10px}
+.funnel-kw{font-size:11.5px;color:var(--fg);padding:5px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.funnel-kw:last-child{border-bottom:none}
+.funnel-stat{font-size:10px;color:var(--fg3)}
+
+/* BADGES */
+.badge-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.badge-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center}
+.badge-icon{font-size:28px;margin-bottom:8px}
+.badge-val{font-size:24px;font-weight:700;color:var(--navy);font-family:'Poppins',sans-serif;letter-spacing:-1px}
+.badge-label{font-size:11px;color:var(--fg3);margin-top:3px}
+.badge-sub{font-size:10px;color:var(--fg3);margin-top:2px}
+
+/* KW CHIPS */
+.chip-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:500;border:1px solid}
+.chip.discovery{background:#F0FDF4;color:#166534;border-color:#86EFAC}
+.chip.opportunity{background:#EFF6FF;color:#1D4ED8;border-color:#93C5FD}
+.chip.outlier{background:#FFF7ED;color:#C2410C;border-color:#FDB366}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.7}
+
+/* SEGMENTATION */
+.seg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.seg-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.seg-hdr{padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.seg-hdr.hero{background:#FEF3C7;color:#92400E}
+.seg-hdr.scale{background:#D1FAE5;color:#065F46}
+.seg-hdr.opt{background:#DBEAFE;color:#1E40AF}
+.seg-hdr.refine{background:#D1FAE5;color:#065F46}
+.seg-body{padding:14px 16px}
+.seg-kw{font-size:11.5px;padding:4px 0;border-bottom:1px solid var(--border);color:var(--fg);display:flex;justify-content:space-between}
+.seg-kw:last-child{border-bottom:none}
+.seg-stat{font-size:10.5px;font-weight:600}
+
+/* MATCH TYPE */
+.match-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.match-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px}
+.match-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;padding:3px 10px;border-radius:4px;display:inline-block}
+.match-type.exact{background:#D1FAE5;color:#065F46}
+.match-type.phrase{background:#DBEAFE;color:#1E40AF}
+.match-type.broad{background:#F3E8FF;color:#6B21A8}
+.match-val{font-size:26px;font-weight:700;font-family:'Poppins',sans-serif;letter-spacing:-1px;margin-bottom:2px}
+.match-sub{font-size:11px;color:var(--fg3)}
+.match-kws{margin-top:10px;font-size:11px;color:var(--fg3)}
+.match-kw{padding:3px 0;border-bottom:1px dotted var(--border);display:flex;justify-content:space-between}
+.match-kw:last-child{border-bottom:none}
+
+/* WEEK TREND */
+.week-trend{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
+.week-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+.week-label{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--fg3);margin-bottom:6px;font-weight:600}
+.week-val{font-size:18px;font-weight:700;color:var(--navy);font-family:'Poppins',sans-serif}
+.week-sub{font-size:10px;color:var(--fg3);margin-top:2px}
+.week-roas{font-size:11px;font-weight:600;margin-top:4px}
+
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0}.topbar{left:0}.theme-grid,.seg-grid,.kpi-4,.kpi-3,.match-grid,.badge-row,.insight-grid,.funnel-grid{grid-template-columns:1fr}.week-trend{grid-template-columns:repeat(2,1fr)}.matrix-row{grid-template-columns:1fr 1fr}}
+
+tr.scale{background:#F0FFF8} tr.add{background:#F5F3FF} tr.opt{background:#F3F8FF}
+.note{font-size:11px;color:var(--fg3);margin-top:10px;line-height:1.6}
+</style></head><body>
+<nav class="sidebar">
+<div class="sb-brand"><img src="data:image/png;base64,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" alt="NorthSide"></div>
+<div class="sb-client"><div class="sb-client-label">Client</div><div class="sb-client-name">Jackfruit365</div><div class="sb-client-meta">Amazon &amp; Flipkart Advertising · Sep 2026</div></div>
+<div class="sb-section">Dashboard</div><ul class="sb-nav">
+<li><a href="#exec" class="active"><span class="ico">▣</span> Executive Summary</a></li><li><a href="#trend"><span class="ico">↗</span> Performance Overview</a></li></ul>
+<div class="sb-section">Keyword Analysis</div><ul class="sb-nav">
+<li><a href="#top"><span class="ico">★</span> Top Performing Keywords</a></li><li><a href="#opp"><span class="ico">◎</span> High Opportunity Keywords</a></li>
+<li><a href="#themes"><span class="ico">◈</span> Keyword Themes &amp; Intent</a></li><li><a href="#market"><span class="ico">🌐</span> Market-Discovered Keywords</a></li>
+<li><a href="#matrix"><span class="ico">⊞</span> Priority Keyword Matrix</a></li></ul>
+<div class="sb-section">Keyword Insights</div><ul class="sb-nav">
+<li><a href="#behaviour"><span class="ico">≋</span> Search Behaviour Analysis</a></li><li><a href="#match"><span class="ico">≡</span> Match Type Performance</a></li>
+<li><a href="#seg"><span class="ico">⊠</span> Keyword Segmentation</a></li></ul>
+<div class="sb-section">Channels &amp; Planning</div><ul class="sb-nav">
+<li><a href="#flipkart"><span class="ico">◆</span> Flipkart Ads</a></li><li><a href="#path"><span class="ico">➜</span> Path to ₹X · October</a></li></ul>
+<div class="sb-footer">NorthSide · Amazon Advertising · Sep 2026</div></nav>
+<div class="topbar"><div class="topbar-left"><strong>Jackfruit365</strong> &nbsp;·&nbsp; Keyword Intelligence Report · Sep 1–30, 2026</div><div class="topbar-right">Monthly Keyword Review &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; NorthSide</div></div>
+<div class="main">
+
+<div class="section" id="exec"><div class="s-eyebrow">September 2026 · Keyword Intelligence</div><h2 class="s-title">Executive Summary</h2>
+<p class="s-sub">Sep 1–30, 2026 · Amazon Ads console totals (SP + SB + SBV + SD) · Brand Analytics · Flipkart Ads from Sep 9</p>
+<div class="kpi-row kpi-4" style="margin-bottom:14px">
+<div class="kcard "><div class="kcard-label">Total Ad Spend</div><div class="kcard-val ">₹84,600</div><div class="kcard-sub">Sep 1–30 · Amazon Ads</div></div>
+<div class="kcard green"><div class="kcard-label">Ad-Attributed Sales</div><div class="kcard-val green">₹6,02,430</div><div class="kcard-sub">41.4% of store sales (Sep 1–29)</div></div>
+<div class="kcard amber"><div class="kcard-label">Blended ROAS</div><div class="kcard-val amber">7.12x</div><div class="kcard-sub">CPC ₹22.09 · 1,154 purchases</div></div>
+<div class="kcard "><div class="kcard-label">Store Sales (Sep 1–29)</div><div class="kcard-val teal">₹14.56L</div><div class="kcard-sub">Daily average ₹50,214</div></div>
+</div>
+<div class="kpi-row kpi-4">
+<div class="kcard "><div class="kcard-label">Ad Purchases</div><div class="kcard-val ">1,154</div><div class="kcard-sub">3,829 clicks · CPC ₹22.09</div></div>
+<div class="kcard green"><div class="kcard-label">jackfruit flour · Purchase Share</div><div class="kcard-val green">71.7%</div><div class="kcard-sub">Click share 58.0% · 203 brand purchases</div></div>
+<div class="kcard amber"><div class="kcard-label">jackfruit flour · IS Rank</div><div class="kcard-val amber">2.46</div><div class="kcard-sub">jackfruit powder rank 1.04 · brand terms 1.0</div></div>
+<div class="kcard "><div class="kcard-label">Repeat Sales Share</div><div class="kcard-val ">7.5%</div><div class="kcard-sub">₹1,17,324 from repeat buyers</div></div>
+</div>
+<div class="insight-grid" style="margin-top:16px">
+<div class="insight green"><div class="insight-label">Strong returns</div><div class="insight-body">Blended ROAS of <strong>7.12x</strong> — <span class="hi">₹6,02,430</span> in ad sales on <strong>₹84,600</strong>, at an average cost per click of ₹22.09. Brand (15.6x), Exact (9.1x) and Product Keywords (8.2x) campaigns all returned above 8x.</div></div>
+<div class="insight green"><div class="insight-label">Sponsored Brands is the standout</div><div class="insight-body"><strong>SB · Jackfruit Flour</strong> returned <span class="hi">₹97,301</span> on just ₹3,404 (<span class="hi">28.6x</span>) — 16% of ad sales from 4% of spend. Brand-keyword targets delivered 18.9x.</div></div>
+<div class="insight green"><div class="insight-label">Category leadership</div><div class="insight-body">On <strong>"jackfruit flour"</strong> Jackfruit365 holds <span class="hi">71.7%</span> of purchases and 58.0% of clicks, with impression rank <span class="hi">2.46</span>. It holds rank <strong>1.0</strong> on "jackfruit powder" and on its own brand terms (~96% share).</div></div>
+<div class="insight amber"><div class="insight-label">"Powder" is the biggest search term</div><div class="insight-body"><strong>"jackfruit powder"</strong> drew 5,444 searches in September versus 4,046 for <strong>"jackfruit flour"</strong>. Jackfruit365's click share on "powder" is 44% against 58% on "flour" — the largest room to grow.</div></div>
+</div>
+<div style="margin-top:20px"><div class="chart-title" style="font-size:12px;font-weight:600;color:var(--navy);margin-bottom:10px">September at a glance · Amazon Ads</div>
+<div class="tbl-wrap"><table><thead><tr><th>Metric</th><th>September</th></tr></thead><tbody><tr><td><strong>Ad spend</strong></td><td>₹84,600</td></tr><tr><td><strong>Ad sales</strong></td><td>₹6,02,430</td></tr><tr><td><strong>Blended ROAS</strong></td><td>7.12x</td></tr><tr><td><strong>Purchases</strong></td><td>1,154</td></tr><tr><td><strong>Clicks</strong></td><td>3,829</td></tr><tr><td><strong>Cost per click</strong></td><td>₹22.09</td></tr><tr><td><strong>Click-to-purchase rate</strong></td><td>30.1%</td></tr><tr><td><strong>Store sales (Sep 1–29)</strong></td><td>₹14,56,205</td></tr><tr><td><strong>Store sales · daily average</strong></td><td>₹50,214</td></tr><tr><td><strong>Avg order value (store)</strong></td><td>₹431</td></tr></tbody></table></div>
+<p class="note">Ad totals from the Amazon Ads console (Sep 1–30). Store sales from Business Report (data available through Sep 29).</p></div>
+</div>
+
+<div class="section" id="trend"><div class="s-eyebrow">Sep 1–30, 2026</div><h2 class="s-title">Performance Overview</h2>
+<p class="s-sub">Weekly trend · Sponsored Products ROAS by week · Store sales daily average</p>
+<div class="week-trend" style="grid-template-columns:repeat(4,1fr)"><div class="week-card"><div class="week-label">Sep 1–7</div><div class="week-val">₹55,218</div><div class="week-sub">Daily store sales avg</div><div class="week-roas" style="color:var(--amber)">SP ROAS: 6.1x</div></div><div class="week-card"><div class="week-label">Sep 8–14</div><div class="week-val">₹51,591</div><div class="week-sub">Daily store sales avg</div><div class="week-roas" style="color:var(--green)">SP ROAS: 7.7x</div></div><div class="week-card"><div class="week-label">Sep 15–21</div><div class="week-val">₹45,320</div><div class="week-sub">Daily store sales avg</div><div class="week-roas" style="color:var(--amber)">SP ROAS: 6.7x</div></div><div class="week-card"><div class="week-label">Sep 22–30</div><div class="week-val">₹48,912</div><div class="week-sub">Daily store sales avg</div><div class="week-roas" style="color:var(--amber)">SP ROAS: 5.9x</div></div></div>
+<div class="chart-wrap"><div class="chart-title">Top-performing campaigns by ROAS · September 2026 (spend → sales)</div><svg viewBox="0 0 700 232" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px;display:block">
+<line x1="295" y1="8" x2="295" y2="212" stroke="#27AE60" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="299" y="10" font-size="9" fill="#27AE60" font-weight="600">Sep blended 7.12x</text><text x="190" y="34" text-anchor="end" font-size="11" fill="#1A2B3C">SB · Jackfruit Flour</text><rect x="200" y="20" width="381" height="20" rx="3" fill="#00C7B1"/><text x="586" y="34" font-size="11" font-weight="700" fill="#0D1B2A">28.6x</text><text x="680" y="34" text-anchor="end" font-size="10" fill="#7A8A99">₹3,404 → ₹97,301</text><text x="190" y="66" text-anchor="end" font-size="11" fill="#1A2B3C">SP · Brand Keywords</text><rect x="200" y="52" width="209" height="20" rx="3" fill="#00C7B1"/><text x="414" y="66" font-size="11" font-weight="700" fill="#0D1B2A">15.6x</text><text x="680" y="66" text-anchor="end" font-size="10" fill="#7A8A99">₹711 → ₹11,120</text><text x="190" y="98" text-anchor="end" font-size="11" fill="#1A2B3C">SP · Exact</text><rect x="200" y="84" width="121" height="20" rx="3" fill="#00C7B1"/><text x="326" y="98" font-size="11" font-weight="700" fill="#0D1B2A">9.1x</text><text x="680" y="98" text-anchor="end" font-size="10" fill="#7A8A99">₹2,595 → ₹23,562</text><text x="190" y="130" text-anchor="end" font-size="11" fill="#1A2B3C">SP · Product Keywords</text><rect x="200" y="116" width="110" height="20" rx="3" fill="#00C7B1"/><text x="315" y="130" font-size="11" font-weight="700" fill="#0D1B2A">8.2x</text><text x="680" y="130" text-anchor="end" font-size="10" fill="#7A8A99">₹40,066 → ₹3,29,062</text><text x="190" y="162" text-anchor="end" font-size="11" fill="#1A2B3C">SBV · Brand 10sec</text><rect x="200" y="148" width="77" height="20" rx="3" fill="#F59E0B"/><text x="282" y="162" font-size="11" font-weight="700" fill="#0D1B2A">5.8x</text><text x="680" y="162" text-anchor="end" font-size="10" fill="#7A8A99">₹251 → ₹1,460</text><text x="190" y="194" text-anchor="end" font-size="11" fill="#1A2B3C">SP · Hero Harvest</text><rect x="200" y="180" width="69" height="20" rx="3" fill="#F59E0B"/><text x="274" y="194" font-size="11" font-weight="700" fill="#0D1B2A">5.2x</text><text x="680" y="194" text-anchor="end" font-size="10" fill="#7A8A99">₹9,351 → ₹48,522</text></svg>
+<div class="chart-legend"><div class="chart-legend-item"><div class="chart-legend-dot" style="background:var(--teal)"></div>7x and above — scale</div><div class="chart-legend-item"><div class="chart-legend-dot" style="background:var(--amber)"></div>5–7x — optimise</div></div></div>
+<div class="tbl-wrap"><table><thead><tr><th>Campaign</th><th>Spend</th><th>Sales</th><th>Orders</th><th>ROAS</th></tr></thead><tbody><tr><td><strong>NS :: SB :: 400g+800g :: KW :: Jackfruit Flour</strong></td><td>₹3,404</td><td>₹97,301</td><td>196</td><td style="color:var(--green);font-weight:700">28.6x</td></tr><tr><td><strong>NS :: SP :: 400g+800g :: KW :: Brand</strong></td><td>₹711</td><td>₹11,120</td><td>27</td><td style="color:var(--green);font-weight:700">15.6x</td></tr><tr><td><strong>NS :: SP :: Exact</strong></td><td>₹2,595</td><td>₹23,562</td><td>51</td><td style="color:var(--teal2);font-weight:700">9.1x</td></tr><tr><td><strong>NS :: SP :: 800g :: KW :: Product Keywords</strong></td><td>₹40,066</td><td>₹3,29,062</td><td>564</td><td style="color:var(--teal2);font-weight:700">8.2x</td></tr><tr><td><strong>NS :: SBV :: 400g+800g :: KW :: Brand :: 10sec</strong></td><td>₹251</td><td>₹1,460</td><td>4</td><td style="color:var(--amber);font-weight:700">5.8x</td></tr><tr><td><strong>NS :: SP :: Exact :: Hero Harvest</strong></td><td>₹9,351</td><td>₹48,522</td><td>100</td><td style="color:var(--amber);font-weight:700">5.2x</td></tr></tbody></table></div>
+<p class="note">Weekly store sales average covers Sep 22–29 (Sep 30 not yet in the Business Report). Campaign-level figures from Sponsored Products and Sponsored Brands reports; shown are the highest-ROAS campaigns. Account totals above include all campaigns.</p></div>
+
+<div class="section" id="top"><div class="s-eyebrow">Ad Performance · Sep 1–30</div><h2 class="s-title">Top Performing Keywords</h2>
+<p class="s-sub">Sponsored Products targeting report · September ROAS and conversion by keyword and match type</p>
+<div class="tbl-wrap"><table><thead><tr><th>#</th><th>Keyword</th><th>Match</th><th>Sep Spend</th><th>Sep Sales</th><th>ROAS</th><th>Orders</th><th>CVR</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td><strong>jackfruit365</strong></td><td>Exact</td><td>₹58</td><td>₹4,300</td><td style="color:var(--green);font-weight:700">74.5x</td><td>9</td><td>32.1%</td><td><span class="tag tag-hero">Hero · Scale</span></td></tr><tr><td>2</td><td><strong>jackfruit 365 flour</strong></td><td>Phrase</td><td>₹418</td><td>₹23,340</td><td style="color:var(--green);font-weight:700">55.9x</td><td>30</td><td>55.6%</td><td><span class="tag tag-hero">Hero · Scale</span></td></tr><tr><td>3</td><td><strong>jackfruit 365 flour</strong></td><td>Exact</td><td>₹417</td><td>₹10,800</td><td style="color:var(--green);font-weight:700">25.9x</td><td>20</td><td>37.0%</td><td><span class="tag tag-hero">Hero · Scale</span></td></tr><tr><td>4</td><td><strong>+jackfruit +365 +diabetics</strong></td><td>Broad</td><td>₹339</td><td>₹7,640</td><td style="color:var(--green);font-weight:700">22.6x</td><td>18</td><td>42.9%</td><td><span class="tag tag-hero">Hero · Scale</span></td></tr><tr><td>5</td><td><strong>jackfruit 365</strong></td><td>Exact</td><td>₹226</td><td>₹4,560</td><td style="color:var(--green);font-weight:700">20.2x</td><td>8</td><td>16.7%</td><td><span class="tag tag-hero">Hero · Scale</span></td></tr><tr><td>6</td><td><strong>jackfruit 365 powder</strong></td><td>Exact</td><td>₹126</td><td>₹2,540</td><td style="color:var(--green);font-weight:700">20.1x</td><td>5</td><td>41.7%</td><td><span class="tag tag-hero">Hero · Scale</span></td></tr><tr><td>7</td><td><strong>jack fruit 365 powder for diabetes</strong></td><td>Exact</td><td>₹1,577</td><td>₹28,980</td><td style="color:var(--green);font-weight:700">18.4x</td><td>51</td><td>41.5%</td><td><span class="tag tag-scale">Scale</span></td></tr><tr><td>8</td><td><strong>jack fruit 365 powder for diabetes</strong></td><td>Phrase</td><td>₹955</td><td>₹16,901</td><td style="color:var(--green);font-weight:700">17.7x</td><td>30</td><td>34.9%</td><td><span class="tag tag-scale">Scale</span></td></tr><tr><td>9</td><td><strong>jackfruit flour</strong></td><td>Phrase</td><td>₹343</td><td>₹6,500</td><td style="color:var(--green);font-weight:700">19.0x</td><td>7</td><td>46.7%</td><td><span class="tag tag-scale">Scale</span></td></tr><tr><td>10</td><td><strong>jackfruit atta</strong></td><td>Phrase</td><td>₹545</td><td>₹7,280</td><td style="color:var(--green);font-weight:700">13.4x</td><td>11</td><td>33.3%</td><td><span class="tag tag-scale">Scale</span></td></tr><tr><td>11</td><td><strong>jackfruit flour</strong></td><td>Exact</td><td>₹15,436</td><td>₹1,62,103</td><td style="color:var(--green);font-weight:700">10.5x</td><td>280</td><td>41.5%</td><td><span class="tag tag-scale">Scale · Top-of-search push</span></td></tr><tr><td>12</td><td><strong>jackfruit powder 1kg</strong></td><td>Phrase</td><td>₹430</td><td>₹3,400</td><td style="color:var(--teal2);font-weight:700">7.9x</td><td>6</td><td>40.0%</td><td><span class="tag tag-opt">Optimise · Build volume</span></td></tr><tr><td>13</td><td><strong>jack fruit powder</strong></td><td>Phrase</td><td>₹2,654</td><td>₹17,260</td><td style="color:var(--amber);font-weight:700">6.5x</td><td>35</td><td>32.7%</td><td><span class="tag tag-opt">Optimise · Build volume</span></td></tr><tr><td>14</td><td><strong>jack fruit powder</strong></td><td>Exact</td><td>₹2,490</td><td>₹15,200</td><td style="color:var(--amber);font-weight:700">6.1x</td><td>29</td><td>31.2%</td><td><span class="tag tag-opt">Optimise · Build volume</span></td></tr></tbody></table></div>
+<p class="note">On Sponsored Brands, <strong>"jackfruit flour" Exact returned 38.2x</strong> and <strong>"jackfruit powder" Exact 27.4x</strong> (campaign: SB · Jackfruit Flour).</p></div>
+
+<div class="section" id="opp"><div class="s-eyebrow amber">High Opportunity · Search Query Performance + Ads</div><h2 class="s-title">High Opportunity Keywords</h2>
+<p class="s-sub">Where search demand is large and Jackfruit365 can capture more share</p>
+<div class="tbl-wrap"><table><thead><tr><th>Search Query</th><th>Monthly Searches</th><th>Brand Click Share</th><th>Brand Purchase Share</th><th>Brand Purchases</th><th>Opportunity</th></tr></thead><tbody>
+<tr><td><strong>jackfruit powder</strong></td><td>5,444</td><td>44.3%</td><td>51.7%</td><td>61</td><td>Largest core search term. Raising click share toward the 58% held on "flour" is the biggest single lever.</td></tr>
+<tr><td><strong>jackfruit</strong></td><td>28,849</td><td>4.2%</td><td>6.4%</td><td>8</td><td>Largest generic search in the category. A controlled discovery campaign with strict negatives can capture new buyers.</td></tr>
+<tr><td><strong>jack fruit powder</strong></td><td>976</td><td>59.6%</td><td>65.9%</td><td>54</td><td>54 brand purchases at 66% share. Momentum term to extend.</td></tr>
+<tr><td><strong>jackfruit flour</strong></td><td>4,046</td><td>58.0%</td><td>71.7%</td><td>203</td><td>Flagship term. Currently impression rank 2.46; target is rank 1.</td></tr>
+<tr><td><strong>jackfruit atta</strong></td><td>217</td><td>57.1%</td><td>77.8%</td><td>14</td><td>13.4x ROAS on Phrase. Small but highly efficient vernacular segment.</td></tr>
+<tr><td><strong>jack fruit 365 powder for diabetes</strong></td><td>627</td><td>76.2%</td><td>93.0%</td><td>66</td><td>93% purchase share. Health intent converts at ~40%.</td></tr>
+</tbody></table></div>
+<p class="note">Source: Brand Analytics · Search Query Performance (September, monthly).</p></div>
+
+<div class="section" id="themes"><div class="s-eyebrow">Intent Segmentation · Sep 2026</div><h2 class="s-title">Keyword Themes &amp; Intent</h2>
+<p class="s-sub">Four keyword clusters · Ad ROAS from Sponsored Products keyword targets · Share data from Brand Analytics</p>
+<div class="theme-grid">
+<div class="theme-card"><div class="theme-badge" style="background:#D1FAE5;color:#065F46">Brand</div><div class="theme-name">Brand Identity</div><div class="theme-desc">jackfruit365 · jackfruit 365 flour · jackfruit 365 powder · brand + health</div><div class="theme-metrics">
+<div class="theme-metric"><span class="theme-metric-label">Ad ROAS (Sep)</span><span class="theme-metric-val" style="color:var(--green)">18.9x</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Ad sales</span><span class="theme-metric-val">₹1,24,421</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Purchase share</span><span class="theme-metric-val" style="color:var(--green)">93–100%</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Impression rank</span><span class="theme-metric-val" style="color:var(--green)">1.0 · ~96% share</span></div></div><div class="theme-bar"><div class="theme-bar-fill" style="width:97%;background:var(--green)"></div></div></div>
+<div class="theme-card"><div class="theme-badge" style="background:#DBEAFE;color:#1E40AF">Category</div><div class="theme-name">Category Leader</div><div class="theme-desc">jackfruit flour · jackfruit powder · jack fruit flour/powder · green jackfruit</div><div class="theme-metrics">
+<div class="theme-metric"><span class="theme-metric-label">Ad ROAS (Sep)</span><span class="theme-metric-val" style="color:var(--teal2)">6.9x</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Ad sales</span><span class="theme-metric-val">₹2,56,563</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Purchase share (flour)</span><span class="theme-metric-val" style="color:var(--green)">71.7%</span></div>
+<div class="theme-metric"><span class="theme-metric-label">IS rank (flour)</span><span class="theme-metric-val" style="color:var(--amber)">2.46</span></div></div><div class="theme-bar"><div class="theme-bar-fill" style="width:72%;background:var(--blue)"></div></div></div>
+<div class="theme-card"><div class="theme-badge" style="background:#FEE2E2;color:#991B1B">Health</div><div class="theme-name">Health &amp; Diabetes</div><div class="theme-desc">diabetes · diabetic · sugar-control intent terms</div><div class="theme-metrics">
+<div class="theme-metric"><span class="theme-metric-label">Brand + health term ROAS</span><span class="theme-metric-val" style="color:var(--green)">18.4x</span></div>
+<div class="theme-metric"><span class="theme-metric-label">jack fruit 365 powder for diabetes</span><span class="theme-metric-val">₹28,980 sales</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Purchase share</span><span class="theme-metric-val" style="color:var(--green)">93%</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Conversion (top terms)</span><span class="theme-metric-val" style="color:var(--green)">~41%</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Status</span><span class="theme-metric-val" style="color:var(--amber)">Dedicated SB/SBV in Oct</span></div></div><div class="theme-bar"><div class="theme-bar-fill" style="width:85%;background:var(--red)"></div></div></div>
+<div class="theme-card"><div class="theme-badge" style="background:#FEF3C7;color:#92400E">Vernacular</div><div class="theme-name">Atta &amp; Regional</div><div class="theme-desc">jackfruit atta · kathal atta/aata · regional spellings</div><div class="theme-metrics">
+<div class="theme-metric"><span class="theme-metric-label">jackfruit atta ROAS</span><span class="theme-metric-val" style="color:var(--green)">13.4x</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Purchase share (SQP)</span><span class="theme-metric-val" style="color:var(--green)">78%</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Searches</span><span class="theme-metric-val">217</span></div>
+<div class="theme-metric"><span class="theme-metric-label">kathal ka aata</span><span class="theme-metric-val">7 purchases · 64% share</span></div>
+<div class="theme-metric"><span class="theme-metric-label">Status</span><span class="theme-metric-val" style="color:var(--amber)">Precision expansion</span></div></div><div class="theme-bar"><div class="theme-bar-fill" style="width:40%;background:var(--amber)"></div></div></div>
+</div><p class="note">Theme ROAS is computed from keyword-level targets in the Sponsored Products targeting report. Health and Vernacular cards highlight the proven core terms within each theme.</p></div>
+
+<div class="section" id="market"><div class="s-eyebrow">Brand Analytics · Search Funnel · Sep 2026</div><h2 class="s-title">Market-Discovered Keywords</h2>
+<p class="s-sub">Queries surfaced by Brand Analytics and search-term data that are not yet core campaign keywords</p>
+<div style="margin-bottom:16px"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--fg3);margin-bottom:10px;font-weight:700">🏆 High performers — converting at 50–100%</div><div class="chip-grid">
+<div class="chip discovery">jackfruit 360 <span style="font-size:10px;opacity:.7">4 purchases · 28.2x</span></div>
+<div class="chip discovery">365 jackfruit flour <span style="font-size:10px;opacity:.7">4 purchases · 28.3x</span></div>
+<div class="chip discovery">green jack fruit 365 flour <span style="font-size:10px;opacity:.7">2 purchases</span></div>
+<div class="chip discovery">jack fruit 365 powder for diabetes green jackfruit flour <span style="font-size:10px;opacity:.7">3 purchases</span></div>
+<div class="chip discovery">jackfruit flour online <span style="font-size:10px;opacity:.7">10.2x</span></div>
+<div class="chip discovery">jackfruit powder kerala <span style="font-size:10px;opacity:.7">7.4x</span></div>
+<div class="chip discovery">jackfruit fiber <span style="font-size:10px;opacity:.7">100% CVR</span></div>
+<div class="chip discovery">green kathal flour <span style="font-size:10px;opacity:.7">100% CVR</span></div></div></div>
+<div style="margin-bottom:16px"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--fg3);margin-bottom:10px;font-weight:700">🔵 Opportunity — shoppers clicking, conversion to be unlocked</div><div class="chip-grid">
+<div class="chip opportunity">jackfruit flour pack of 3 <span style="font-size:10px;opacity:.7">multipack demand</span></div>
+<div class="chip opportunity">jackfruit powder for diabetics 1kg <span style="font-size:10px;opacity:.7">pack-size intent</span></div>
+<div class="chip opportunity">365 kathal atta <span style="font-size:10px;opacity:.7">2 clicks</span></div>
+<div class="chip opportunity">raw green jackfruit powder <span style="font-size:10px;opacity:.7">1 click</span></div>
+<div class="chip opportunity">jackfruit green powder <span style="font-size:10px;opacity:.7">1 click</span></div>
+<div class="chip opportunity">jackfruit 365 powder for diabetics <span style="font-size:10px;opacity:.7">1 click</span></div></div></div>
+<div><div style="font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--fg3);margin-bottom:10px;font-weight:700">⚡ Spelling variants shoppers use — add as low-bid Exact</div><div class="chip-grid">
+<div class="chip outlier">jukfruet powder <span style="font-size:10px;opacity:.7">converted</span></div><div class="chip outlier">jackfruit poweder <span style="font-size:10px;opacity:.7">converted</span></div>
+<div class="chip outlier">jackfruits flour <span style="font-size:10px;opacity:.7">converted</span></div><div class="chip outlier">jackfriut 365 <span style="font-size:10px;opacity:.7">clicked</span></div>
+<div class="chip outlier">jack fruut 365 <span style="font-size:10px;opacity:.7">clicked</span></div><div class="chip outlier">jackfruit powderr <span style="font-size:10px;opacity:.7">clicked</span></div></div>
+<p class="note">Volumes on spelling variants are small; low bids are sufficient because competition on these queries is minimal. Competitor-brand queries that also surfaced (e.g. "floreza jackfruit powder") indicate comparison shopping and can be tested with conquest targeting.</p></div></div>
+
+<div class="section" id="matrix"><div class="s-eyebrow">October Actions</div><h2 class="s-title">Priority Keyword Matrix</h2>
+<p class="s-sub">September ROAS · Brand Analytics share · October action · Sep CPC shown as bid reference</p>
+<div class="tbl-wrap"><table><thead><tr><th>Keyword</th><th>Campaign</th><th>Sep ROAS</th><th>Purchase Share</th><th>Sep CPC</th><th>October Action</th></tr></thead><tbody><tr class="scale"><td><strong>jackfruit365</strong></td><td>Exact · SP / Brand</td><td>74.5x</td><td>83.3%</td><td>₹2.1</td><td><span class="tag tag-scale">Scale — capture every brand impression</span></td></tr><tr class="scale"><td><strong>jackfruit 365 flour</strong></td><td>Phrase + Exact · SP</td><td>55.9x</td><td>100%</td><td>₹7.7</td><td><span class="tag tag-scale">Scale — highest-volume brand term</span></td></tr><tr class="scale"><td><strong>jack fruit 365 powder for diabetes</strong></td><td>Exact + Phrase · SP</td><td>18.4x</td><td>93%</td><td>₹12.8</td><td><span class="tag tag-scale">Scale — brand + health, ~41% CVR</span></td></tr><tr class="scale"><td><strong>jackfruit flour</strong></td><td>Exact · SP + SB</td><td>10.5x</td><td>71.7%</td><td>₹22.9</td><td><span class="tag tag-scale">Scale — hold bids, test top-of-search placement to reach rank 1</span></td></tr><tr class="scale"><td><strong>jackfruit atta</strong></td><td>Phrase · SP</td><td>13.4x</td><td>77.8%</td><td>₹16.5</td><td><span class="tag tag-scale">Scale — efficient vernacular term</span></td></tr><tr class="add"><td><strong>jackfruit powder 1kg</strong></td><td>Add Exact</td><td>8.3x</td><td>—</td><td>₹27.9</td><td><span class="tag tag-new">Add — 7 orders at 8.3x via search terms</span></td></tr><tr class="add"><td><strong>green jackfruit flour</strong></td><td>Add Exact</td><td>10.3x</td><td>—</td><td>₹29.5</td><td><span class="tag tag-new">Add — 5 orders at 10.3x in search terms</span></td></tr><tr class="add"><td><strong>jackfruit flour for roti</strong></td><td>Add Phrase</td><td>11.0x</td><td>100%</td><td>₹21.1</td><td><span class="tag tag-new">Add — use-case term, 11.0x in search terms</span></td></tr><tr class="add"><td><strong>365 jackfruit flour / jackfruit 360</strong></td><td>Add Exact</td><td>28.3x</td><td>—</td><td>₹15.8</td><td><span class="tag tag-new">Add — ~28x on spelling and word-order variants</span></td></tr><tr class="opt"><td><strong>jackfruit powder</strong></td><td>Exact · SP</td><td>3.5x</td><td>51.7%</td><td>₹45.5</td><td><span class="tag tag-opt">Optimise — largest search term; refine placement and creative</span></td></tr><tr class="opt"><td><strong>jack fruit powder</strong></td><td>Exact + Phrase · SP</td><td>6.5x</td><td>65.9%</td><td>₹24.8</td><td><span class="tag tag-opt">Optimise — strong brand momentum at 66% purchase share</span></td></tr><tr class="opt"><td><strong>jackfruit (generic)</strong></td><td>New discovery campaign</td><td>—</td><td>6.4%</td><td>—</td><td><span class="tag tag-opt">Optimise — launch controlled discovery with strict negatives</span></td></tr></tbody></table></div><p class="note">Sep CPC is the average cost per click actually paid in September and is a reference for bid-setting, not the bid itself. "jackfruit (generic)" has no Sponsored Products target in September, hence no ROAS.</p></div>
+
+<div class="section" id="behaviour"><div class="s-eyebrow">Brand Analytics · Search Query Performance · Sep 2026</div><h2 class="s-title">Search Behaviour Analysis</h2>
+<p class="s-sub">488 queries analysed · 43,112 brand impressions · 3,364 brand clicks · 630 brand purchases</p>
+<div class="badge-row" style="margin-bottom:20px">
+<div class="badge-card"><div class="badge-icon">🔍</div><div class="badge-val">58.0%</div><div class="badge-label">Brand Click Share</div><div class="badge-sub">jackfruit flour · 4,046 searches</div></div>
+<div class="badge-card"><div class="badge-icon">🛒</div><div class="badge-val">71.7%</div><div class="badge-label">Brand Purchase Share</div><div class="badge-sub">jackfruit flour · 203 brand purchases</div></div>
+<div class="badge-card"><div class="badge-icon">🔄</div><div class="badge-val">7.5%</div><div class="badge-label">Repeat Sales Share</div><div class="badge-sub">₹1,17,324 · 166 repeat customers</div></div></div>
+<div class="funnel-grid">
+<div class="funnel-card"><div class="funnel-card-hdr" style="color:var(--green)">🏆 Amazon's Choice — Badge Impact</div>
+<div class="funnel-kw"><span>With badge</span><span class="funnel-stat">93 queries · <strong>1.310</strong> purch/1000 impr</span></div>
+<div class="funnel-kw"><span>Without badge</span><span class="funnel-stat" style="color:var(--green);font-weight:700">395 queries · <strong>1.512</strong> purch/1000 impr</span></div>
+<div style="font-size:11px;color:var(--fg3);margin-top:10px;line-height:1.6">Jackfruit365 converts best on specific, intent-led searches where it wins without the badge.</div></div>
+<div class="funnel-card"><div class="funnel-card-hdr" style="color:var(--teal2)">📊 Brand Funnel · September</div>
+<div class="funnel-kw"><span>Brand impressions</span><span class="funnel-stat">43,112</span></div>
+<div class="funnel-kw"><span>Brand clicks</span><span class="funnel-stat">3,364</span></div>
+<div class="funnel-kw"><span>Brand purchases</span><span class="funnel-stat">630</span></div>
+<div class="funnel-kw"><span>Click-to-purchase rate</span><span class="funnel-stat" style="color:var(--green);font-weight:700">18.7%</span></div></div></div>
+<div class="insight-grid">
+<div class="insight amber"><div class="insight-label">"Powder" is where the volume is</div><div class="insight-body">Market searches: <strong>"jackfruit powder" 5,444</strong> and <strong>"jackfruit flour" 4,046</strong> — 9,490 combined. Jackfruit365 holds 44% click share and rank 1.04 on "powder", the term with the most room to grow.</div></div>
+<div class="insight green"><div class="insight-label">Loyal buyers on brand and health terms</div><div class="insight-body">Purchase share is <span class="hi">93–100%</span> on brand and brand-plus-health queries. Repeat buyers contributed <strong>₹1,17,324</strong> — 7.5% of sales — from 2,940 unique customers across 3,140 orders.</div></div></div></div>
+
+<div class="section" id="match"><div class="s-eyebrow">SP Targeting Report · Sep 1–30</div><h2 class="s-title">Match Type Performance</h2>
+<p class="s-sub">Keyword-level targets only (ASIN and category targets excluded)</p>
+<div class="match-grid">
+<div class="match-card"><div class="match-type exact">Exact Match</div><div class="match-val" style="color:var(--green)">7.9x</div><div class="match-sub">Exact-match keyword targets</div><div class="match-kws"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--fg3);margin-bottom:6px;font-weight:700">Top converters</div>
+<div class="match-kw"><span>jackfruit365</span><span style="color:var(--green);font-weight:700">74.5x</span></div><div class="match-kw"><span>jackfruit 365 flour</span><span style="color:var(--green);font-weight:700">25.9x</span></div><div class="match-kw"><span>jack fruit 365 powder for diabetes</span><span style="color:var(--green);font-weight:700">18.4x</span></div><div class="match-kw"><span>jackfruit flour</span><span style="color:var(--teal2);font-weight:700">10.5x</span></div></div></div>
+<div class="match-card"><div class="match-type phrase">Phrase Match</div><div class="match-val" style="color:var(--teal2)">10.1x</div><div class="match-sub">Phrase-match keyword targets</div><div class="match-kws"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--fg3);margin-bottom:6px;font-weight:700">Top converters</div>
+<div class="match-kw"><span>jackfruit 365 flour</span><span style="color:var(--green);font-weight:700">55.9x</span></div><div class="match-kw"><span>jack fruit 365 powder for diabetes</span><span style="color:var(--green);font-weight:700">17.7x</span></div><div class="match-kw"><span>jackfruit flour</span><span style="color:var(--green);font-weight:700">19.0x</span></div><div class="match-kw"><span>jackfruit atta</span><span style="color:var(--green);font-weight:700">13.4x</span></div></div></div>
+<div class="match-card"><div class="match-type broad">Broad Match</div><div class="match-val" style="color:var(--amber)">2.6x</div><div class="match-sub">Discovery layer</div><div class="match-kws"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--fg3);margin-bottom:6px;font-weight:700">Top converters</div>
+<div class="match-kw"><span>+jackfruit +365 +diabetics</span><span style="color:var(--green);font-weight:700">22.6x</span></div><div class="match-kw"><span>jackfruit flour 365 for diabetics</span><span style="color:var(--green);font-weight:700">21.3x</span></div><div class="match-kw"><span>jackfruit 365 powder for diabetics</span><span style="color:var(--teal2);font-weight:700">6.7x</span></div></div></div></div>
+<div class="insight navy" style="margin-top:16px"><div class="insight-label">Match type direction for October</div><div class="insight-body"><strong>Phrase (10.1x) and Exact (7.9x) carry the account</strong>. Broad is the discovery layer: modified-broad on brand and health stems performs at 20x+, while generic broad terms need tighter negatives — October will move broad to modifier-based stems and harvest converting queries into Exact monthly.</div></div></div>
+
+<div class="section" id="seg"><div class="s-eyebrow">Keyword Tiers · Sep 2026</div><h2 class="s-title">Keyword Segmentation</h2>
+<p class="s-sub">HERO: Protect &amp; scale · SCALE: Invest more · OPTIMISE: Improve efficiency · DISCOVER: Expand reach</p>
+<div class="seg-grid">
+<div class="seg-card"><div class="seg-hdr hero">🏆 Hero — Protect</div><div class="seg-body"><div style="font-size:10px;color:var(--fg3);margin-bottom:8px">ROAS above 20x</div>
+<div class="seg-kw"><span>jackfruit365</span><span class="seg-stat" style="color:var(--green)">74.5x</span></div><div class="seg-kw"><span>jackfruit 365 flour (Phrase)</span><span class="seg-stat" style="color:var(--green)">55.9x</span></div><div class="seg-kw"><span>jackfruit 365 flour (Exact)</span><span class="seg-stat" style="color:var(--green)">25.9x</span></div><div class="seg-kw"><span>+jackfruit +365 +diabetics</span><span class="seg-stat" style="color:var(--green)">22.6x</span></div><div class="seg-kw"><span>jackfruit flour 365 for diabetics</span><span class="seg-stat" style="color:var(--green)">21.3x</span></div>
+<div style="margin-top:10px;padding:8px;background:#FEF3C7;border-radius:6px;font-size:11px;color:#92400E"><strong>October focus:</strong> keep full brand coverage; protect rank 1.</div></div></div>
+<div class="seg-card"><div class="seg-hdr scale">📈 Scale — Invest</div><div class="seg-body"><div style="font-size:10px;color:var(--fg3);margin-bottom:8px">ROAS 10–20x</div>
+<div class="seg-kw"><span>jackfruit flour (Phrase)</span><span class="seg-stat" style="color:var(--teal2)">19.0x</span></div><div class="seg-kw"><span>jack fruit 365 powder for diabetes</span><span class="seg-stat" style="color:var(--teal2)">18.4x</span></div><div class="seg-kw"><span>jackfruit atta</span><span class="seg-stat" style="color:var(--teal2)">13.4x</span></div><div class="seg-kw"><span>jackfruit flour (Exact)</span><span class="seg-stat" style="color:var(--teal2)">10.5x</span></div>
+<div style="margin-top:10px;padding:8px;background:#D1FAE5;border-radius:6px;font-size:11px;color:#065F46"><strong>October focus:</strong> raise investment where volume allows; flagship term is 280 orders/month.</div></div></div>
+<div class="seg-card"><div class="seg-hdr opt">⚙️ Optimise — Improve</div><div class="seg-body"><div style="font-size:10px;color:var(--fg3);margin-bottom:8px">ROAS 3–8x · large volume</div>
+<div class="seg-kw"><span>jack fruit powder (Phrase)</span><span class="seg-stat" style="color:var(--blue)">6.5x</span></div><div class="seg-kw"><span>jack fruit powder (Exact)</span><span class="seg-stat" style="color:var(--blue)">6.1x</span></div><div class="seg-kw"><span>jack fruit flour for diabetes</span><span class="seg-stat" style="color:var(--blue)">5.0x</span></div><div class="seg-kw"><span>jackfruit powder (Exact)</span><span class="seg-stat" style="color:var(--blue)">3.5x</span></div>
+<div style="margin-top:10px;padding:8px;background:#DBEAFE;border-radius:6px;font-size:11px;color:#1E40AF"><strong>October focus:</strong> "powder" is the growth term — refine placement, creative and landing to lift ROAS.</div></div></div>
+<div class="seg-card"><div class="seg-hdr refine">🔁 Discover — Expand</div><div class="seg-body"><div style="font-size:10px;color:var(--fg3);margin-bottom:8px">New terms from search-term and funnel data</div>
+<div class="seg-kw"><span>jackfruit 360 / 365 jackfruit flour</span><span class="seg-stat" style="color:var(--green)">28x</span></div><div class="seg-kw"><span>jackfruit flour for roti</span><span class="seg-stat" style="color:var(--green)">11.0x</span></div><div class="seg-kw"><span>green jackfruit flour</span><span class="seg-stat" style="color:var(--green)">10.3x</span></div><div class="seg-kw"><span>jackfruit powder 1kg</span><span class="seg-stat" style="color:var(--teal2)">8.3x</span></div><div class="seg-kw"><span>jackfruit (generic)</span><span class="seg-stat" style="color:var(--teal2)">28,849 searches</span></div>
+<div style="margin-top:10px;padding:8px;background:#D1FAE5;border-radius:6px;font-size:11px;color:#065F46"><strong>October focus:</strong> add as Exact/Phrase; test generic discovery.</div></div></div></div>
+<div style="margin-top:20px;background:var(--navy);border-radius:10px;padding:20px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+<div style="text-align:center"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:4px">Brand Keywords</div><div style="font-size:20px;font-weight:700;color:#FEF3C7;font-family:'Poppins',sans-serif">18.9x</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">₹1,24,421 sales</div></div>
+<div style="text-align:center"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:4px">SB · Jackfruit Flour</div><div style="font-size:20px;font-weight:700;color:var(--teal);font-family:'Poppins',sans-serif">28.6x</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">₹97,301 sales</div></div>
+<div style="text-align:center"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:4px">Category Keywords</div><div style="font-size:20px;font-weight:700;color:#93C5FD;font-family:'Poppins',sans-serif">6.9x</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">₹2,56,563 sales</div></div>
+<div style="text-align:center"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:4px">Account Blended</div><div style="font-size:20px;font-weight:700;color:var(--green);font-family:'Poppins',sans-serif">7.12x</div><div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">₹6,02,430 sales</div></div></div></div>
+
+<div class="section" id="flipkart"><div class="s-eyebrow">Flipkart Ads · Launch Month</div><h2 class="s-title">Flipkart Ads Performance</h2>
+<p class="s-sub">Product Listing Ads · campaigns live from Sep 9, 2026 · Source: Flipkart Ads campaign report (Sep 1–30)</p>
+<div class="kpi-row kpi-4" style="margin-bottom:14px">
+<div class="kcard "><div class="kcard-label">Ad Spend</div><div class="kcard-val ">₹16,438</div><div class="kcard-sub">5 campaigns · launch month</div></div>
+<div class="kcard green"><div class="kcard-label">Ad Revenue</div><div class="kcard-val green">₹34,614</div><div class="kcard-sub">86 units converted</div></div>
+<div class="kcard amber"><div class="kcard-label">Blended ROI</div><div class="kcard-val amber">2.11x</div><div class="kcard-sub">Learning phase</div></div>
+<div class="kcard "><div class="kcard-label">Avg CPC</div><div class="kcard-val teal">₹7.55</div><div class="kcard-sub">vs Amazon ₹22.09 · 2,176 clicks</div></div></div>
+<div class="tbl-wrap"><table><thead><tr><th>Campaign</th><th>Spend</th><th>Revenue</th><th>Units</th><th>Avg CPC</th><th>ROI</th></tr></thead><tbody><tr><td><strong>Auto (Smart ROI)</strong></td><td>₹2,331</td><td>₹13,870</td><td>32</td><td>₹5.84</td><td style="color:var(--amber);font-weight:700">5.95x</td></tr><tr><td><strong>Brand</strong></td><td>₹475</td><td>₹1,922</td><td>4</td><td>₹4.84</td><td style="color:var(--amber);font-weight:700">4.05x</td></tr><tr><td><strong>Category</strong></td><td>₹3,984</td><td>₹12,990</td><td>33</td><td>₹9.60</td><td style="color:var(--amber);font-weight:700">3.26x</td></tr></tbody></table></div>
+<div class="insight-grid" style="margin-top:16px">
+<div class="insight green"><div class="insight-label">What worked</div><div class="insight-body"><strong>Auto (Smart ROI)</strong> led at <span class="hi">5.95x</span> on ₹2,331, followed by <strong>Brand</strong> (4.05x) and <strong>Category</strong> (3.26x). Flipkart CPC averaged ₹7.55 — roughly a third of Amazon's.</div></div>
+<div class="insight amber"><div class="insight-label">Action needed to continue</div><div class="insight-body">Four of five campaigns show an <strong>“insufficient funds” status — the Flipkart ad wallet balance ran out</strong> — so only ₹16,438 of the ₹25,000 monthly plan was spent. A wallet top-up is required to resume in October; budget will then concentrate on Auto, Brand and Category.</div></div></div>
+<p class="note">Flipkart reports campaign-level revenue only in this export; keyword- and search-term-level Flipkart data was not part of this month's reports.</p></div>
+
+<div class="section" id="path"><div class="s-eyebrow">October 2026 Planning</div><h2 class="s-title">Path to ₹X · October</h2>
+<p class="s-sub">Approved budgets: Amazon ₹1,25,000 · Flipkart ₹25,000 · Scenario planning based on September actuals</p>
+<div class="kpi-row kpi-4" style="margin-bottom:14px">
+<div class="kcard amber"><div class="kcard-label">Sep Budget Used</div><div class="kcard-val amber">68%</div><div class="kcard-sub">₹84,600 of ₹1,25,000</div></div>
+<div class="kcard green"><div class="kcard-label">Headroom Available</div><div class="kcard-val green">₹40,400</div><div class="kcard-sub">Unspent Sep budget to deploy</div></div>
+<div class="kcard "><div class="kcard-label">Ad Share of Store Sales</div><div class="kcard-val teal">41.4%</div><div class="kcard-sub">Sep 1–29</div></div>
+<div class="kcard green"><div class="kcard-label">SB ROAS (top campaign)</div><div class="kcard-val green">28.6x</div><div class="kcard-sub">on only ₹3,404 spend</div></div></div>
+<div class="s-eyebrow" style="margin-top:8px">Four levers</div>
+<div class="insight-grid">
+<div class="insight green"><div class="insight-label">1 · Fund the proven winners</div><div class="insight-body">SB · Jackfruit Flour (<span class="hi">28.6x</span>) and brand keywords (18.9x) are the most efficient dollars in the account. Increase SB budget and bids to win more of the placements they already convert.</div></div>
+<div class="insight green"><div class="insight-label">2 · Deploy the unspent headroom</div><div class="insight-body">₹40,400 of September's budget was not used. October launches absorb it: <strong>SP Auto discovery</strong>, <strong>SB + SBV Health &amp; Diabetes</strong>, <strong>SP 400g pack-size</strong> and <strong>SD audience</strong>.</div></div>
+<div class="insight amber"><div class="insight-label">3 · Win the "powder" demand</div><div class="insight-body">"jackfruit powder" has 5,444 monthly searches and a 44% click share. Lifting it toward the 58% held on "flour" is the largest organic-plus-paid upside.</div></div>
+<div class="insight"><div class="insight-label">4 · Restore Flipkart delivery</div><div class="insight-body">Top up the ad wallet and concentrate on Auto (6.0x), Brand and Category; run Health and Atta as smaller tests. Video (SBV) creatives: ₹8,769 → ₹33,422 (3.8x) — refresh in October.</div></div></div>
+<div style="margin-top:20px"><div class="chart-title" style="font-size:12px;font-weight:600;color:var(--navy);margin-bottom:10px">Amazon October scenarios (illustrative)</div>
+<div class="tbl-wrap"><table><thead><tr><th>Scenario</th><th>Amazon Ad Spend</th><th>Assumed ROAS</th><th>Ad Sales</th><th>Implied Store Sales</th></tr></thead><tbody><tr><td><strong>Efficiency-led</strong></td><td>₹90,000</td><td>7.5x</td><td>₹6,75,000</td><td>₹16.32L</td></tr><tr><td><strong>Balanced</strong></td><td>₹1,10,000</td><td>7.0x</td><td>₹7,70,000</td><td>₹18.61L</td></tr><tr><td><strong>Full deployment</strong></td><td>₹1,25,000</td><td>6.5x</td><td>₹8,12,500</td><td>₹19.64L</td></tr></tbody></table></div>
+<p class="note">Implied store sales assume ad sales stay at September's 41.4% share of store sales. ROAS assumptions step down with scale to reflect diminishing returns (September actual: 7.12x). Flipkart (₹25,000) is additional. These are planning scenarios, not forecasts; the path will be re-based to the confirmed October target.</p></div></div>
+
+</div>
+<script>
+const sections=document.querySelectorAll('.section[id]'),links=document.querySelectorAll('.sb-nav a');
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const k=document.querySelector('.sb-nav a[href="#'+e.target.id+'"]');if(k)k.classList.add('active');}});},{rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(s=>obs.observe(s));
+</script></body></html>
